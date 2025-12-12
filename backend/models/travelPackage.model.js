@@ -1,18 +1,17 @@
-import monogoose from 'mongoose';
-const { Schema, model } = monogoose;
+import mongoose from 'mongoose';
 
-const travelPackageSchema = new Schema( {
+const travelPackageSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
     },
     description: {
         type: String,
-        required: true,
+        default: 'No description provided',
     },
-    destination:{
+    destination: {
         type: String,
-        required: true, 
+        required: true,
     },
     price: {
         type: Number,
@@ -20,21 +19,21 @@ const travelPackageSchema = new Schema( {
     },
     duration: {
         type: Number,
-        required: true, // duration in days
+        required: true,
     },
     images: [{
         type: String,
     }],
     category: {
         type: String,
-        enum: ['Adventure', 'family', 'Cultural', 'honeymoon', 'frindship'],
+        enum: ['Adventure', 'Family', 'Cultural', 'Honeymoon', 'Friendship'],
         required: true,
     },
     availability: {
         type: Boolean,
         default: true,
     },
-    avaiableDates: [{
+    availableDates: [{
         type: Date,
     }],
     ratings: {
@@ -42,18 +41,12 @@ const travelPackageSchema = new Schema( {
         min: 1,
         max: 5,
     },
-    reviews: [reviewIdSchema],
-
-
-}, { timestamps: true } );
-
-reviewIdSchema = new Schema({
-    reviewId: {
-        type: monogoose.Schema.Types.ObjectId,
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Review',
-    }
-});
+    }],
+}, { timestamps: true });
 
-const TravelPackage = model( 'TravelPackage', travelPackageSchema );
+const TravelPackage = mongoose.model('TravelPackage', travelPackageSchema);
 
 export default TravelPackage;

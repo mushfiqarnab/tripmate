@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
   wishlist: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Product",
+    ref: "TravelPackage",
   }],
   currencyPreference: {
     type: String,
@@ -43,6 +43,11 @@ const userSchema = new mongoose.Schema({
   isVerified: {
     type: Boolean,
     default: false,
+  },
+  type: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
   },
 
   
