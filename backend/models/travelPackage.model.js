@@ -26,12 +26,19 @@ const travelPackageSchema = new mongoose.Schema({
     }],
     category: {
         type: String,
-        enum: ['Adventure', 'Family', 'Cultural', 'Honeymoon', 'Friendship'],
+        enum: ['Adventure', 'Family', 'Cultural', 'Honeymoon', 'Friendship',"educational", "Wellness"],
         required: true,
     },
     availability: {
         type: Boolean,
         default: true,
+    },
+    isBonusDeal: {
+        type: Boolean,
+        default: false,
+    },
+    discountedPrice: {
+        type: Number,
     },
     availableDates: [{
         type: Date,

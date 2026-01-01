@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: theme('fontFamily.body');
+  background: radial-gradient(circle at 20% 20%, rgba(106, 224, 255, 0.08), transparent 35%),
+              radial-gradient(circle at 80% 0%, rgba(255, 126, 182, 0.08), transparent 30%),
+              #0b1021;
+  min-height: 100vh;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.card-hover {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 60px rgba(0,0,0,0.35), 0 10px 30px rgba(106, 224, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Custom select dropdown styling */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23faf8f3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select option {
+  background-color: #0f1419;
+  color: #faf8f3;
+  padding: 0.5rem;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: #faf8f3;
+}

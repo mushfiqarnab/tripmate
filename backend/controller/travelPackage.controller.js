@@ -17,7 +17,37 @@ export const createTravelPackage = async (req, res) => {
 
 export const getAllTravelPackages = async (req, res) => {
   try {
-    const travelPackages = await TravelPackage.find();
+    const {
+      isBonusDeal,
+      destination,
+      minPrice,
+      maxPrice,
+      minDuration,
+      maxDuration,
+    } = req.query;
+    const query = {};
+
+    if (isBonusDeal === "true") {
+      query.isBonusDeal = true;
+    }
+
+    if (destination) {
+      query.destination = { $regex: destination, $options: "i" };
+    }
+
+    if (minPrice || maxPrice) {
+      query.price = {};
+      if (minPrice) query.price.$gte = Number(minPrice);
+      if (maxPrice) query.price.$lte = Number(maxPrice);
+    }
+
+    if (minDuration || maxDuration) {
+      query.duration = {};
+      if (minDuration) query.duration.$gte = Number(minDuration);
+      if (maxDuration) query.duration.$lte = Number(maxDuration);
+    }
+
+    const travelPackages = await TravelPackage.find(query);
     res.status(200).json(travelPackages);
   } catch (error) {
     res.status(500).json({ message: error.message });
