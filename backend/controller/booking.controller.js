@@ -14,6 +14,7 @@ export const createBooking = async (req, res) => {
       user,
     } = req.body;
 
+    
     if (type === "flight" && !flight) {
       return res
         .status(400)
